@@ -10,7 +10,7 @@ const persons = [
   {
     id: 2,
     name: 'Ada Lovelace',
-    number: 'test',
+    number: '39-44-5323523',
   },
   {
     id: 3,
@@ -26,6 +26,17 @@ const persons = [
 
 app.get('/api/persons', (request, response) => {
   response.json(persons)
+})
+
+app.get('/api/persons/:id', (request, response) => {
+  const id = Number(request.params.id)
+  response.json(persons.find((person) => person.id === id))
+})
+
+app.get('/info', (request, response) => {
+  response.send(
+    `Phonebook has info for ${persons.length} people <br /> ${new Date()}`,
+  )
 })
 
 const PORT = 3001
